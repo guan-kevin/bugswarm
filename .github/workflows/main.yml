@@ -71,7 +71,6 @@ jobs:
 
   bugswarm:
     name: Test in public repo
-    if: github.repository == 'BugSwarm/bugswarm'
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -123,8 +122,3 @@ jobs:
         run: |
           python3 -m unittest discover
 
-  bugswarm_build:
-    name: Build artifacts
-    if: github.event_name == 'push' && github.ref_name == 'master'
-    needs: bugswarm
-    uses: ./.github/workflows/build-artifacts.yml
